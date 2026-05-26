@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参鸽堂 · 产品手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red-deep: #8b1a2b;
+  --red-bright: #b5343a;
+  --gold: #c9a96e;
+  --gold-dark: #a88b4c;
+  --cream: #fefaf5;
+  --cream-dark: #f5efe6;
+  --text-dark: #1a0d08;
+  --text-mid: #4a3a2e;
+  --text-light: #8c7b6e;
+  --granule: #c47f3a;
+  --granule-deep: #8b5a2b;
+  --drink: #7b4f8a;
+  --drink-deep: #5a3068;
+  --font-display: 'Noto Serif SC', serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+  --title-size: clamp(2rem, 5vw, 4rem);
+  --h2-size: clamp(1.3rem, 3vw, 2.2rem);
+  --h3-size: clamp(1rem, 2vw, 1.4rem);
+  --body-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  --small-size: clamp(0.65rem, 1vw, 0.8rem);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+.slide {
+  width: 100vw; height: 100vh; height: 100dvh;
+  overflow: hidden; scroll-snap-align: start;
+  display: flex; position: relative;
+}
+img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
+
+/* Animations */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1) { transition-delay: 0.1s; }
+.reveal:nth-child(2) { transition-delay: 0.2s; }
+.reveal:nth-child(3) { transition-delay: 0.35s; }
+.reveal:nth-child(4) { transition-delay: 0.5s; }
+.reveal:nth-child(5) { transition-delay: 0.6s; }
+
+/* Fixed logo */
+.fixed-logo {
+  position: absolute; top: clamp(6px, 1vh, 12px);
+  left: calc(clamp(60px, 10vw, 120px) + clamp(3px, 0.5vw, 6px) + clamp(18px, 2.5vw, 36px));
+  z-index: 10;
+}
+.fixed-logo img { height: clamp(80px, 13vh, 150px); width: auto; }
+
+/* Shared chrome */
+.slide-chrome { background: var(--cream); font-family: var(--font-body); }
+.slide-chrome .left-panel {
+  width: clamp(60px, 10vw, 120px);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: clamp(30px, 6vh, 60px); flex-shrink: 0;
+}
+/* Category left-panel colors */
+.slide-chrome .left-panel.red { background: linear-gradient(180deg, var(--red-bright), var(--red-deep)); }
+.slide-chrome .left-panel.amber { background: linear-gradient(180deg, var(--granule), var(--granule-deep)); }
+.slide-chrome .left-panel.plum { background: linear-gradient(180deg, var(--drink), var(--drink-deep)); }
+.slide-chrome .vertical-text {
+  writing-mode: vertical-rl; color: rgba(255,255,255,0.7);
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem); letter-spacing: 0.5em;
+  font-family: var(--font-display);
+}
+.slide-chrome .gold-stripe {
+  width: clamp(3px, 0.5vw, 6px); flex-shrink: 0;
+  background: linear-gradient(180deg, var(--gold), var(--gold-dark), var(--gold));
+}
+.slide-chrome .main-content {
+  flex: 1; display: flex; align-items: center;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  padding-top: clamp(100px, 16vh, 180px);
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* Cover slide */
+.cover-slide .main-content {
+  flex: 1; display: flex; align-items: center;
+  padding: 0; padding-left: clamp(30px, 6vw, 80px); padding-top: 0;
+  position: relative;
+}
+.cover-slide .geo-rect {
+  position: absolute; border: 1px solid rgba(181,52,58,0.15);
+}
+.cover-slide .geo-rect-1 {
+  width: clamp(80px, 15vw, 180px); height: clamp(80px, 15vw, 180px);
+  top: 12%; right: 10%;
+  animation: floatIn 1s 0.3s var(--ease-out-expo) both;
+}
+.cover-slide .geo-rect-2 {
+  width: clamp(40px, 6vw, 80px); height: clamp(40px, 6vw, 80px);
+  bottom: 18%; right: 25%; border-color: rgba(201,169,110,0.25);
+  animation: floatIn 1s 0.5s var(--ease-out-expo) both;
+}
+.cover-slide .content { z-index: 1; }
+.cover-slide .overline {
+  font-size: clamp(0.7rem, 1vw, 0.8rem); letter-spacing: 0.4em;
+  color: var(--gold); margin-bottom: clamp(14px, 2.5vh, 24px); font-weight: 500;
+}
+.cover-slide h1 {
+  font-family: var(--font-display); font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  font-weight: 900; color: var(--text-dark); line-height: 1.2; letter-spacing: 0.05em;
+}
+.cover-slide h1 .highlight { color: var(--red-bright); }
+.cover-slide .tagline {
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem); color: var(--text-light);
+  margin-top: clamp(18px, 3vh, 36px); letter-spacing: 0.12em;
+}
+.cover-slide .gold-dot {
+  display: inline-block; width: 6px; height: 6px;
+  background: var(--gold); border-radius: 50%;
+  margin: 0 clamp(6px, 1vw, 10px); vertical-align: middle; opacity: 0.7;
+}
+@keyframes floatIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Brand slide */
+.brand-slide .main-content { align-items: stretch; }
+.brand-slide .brand-image-wrap {
+  flex: 0 0 clamp(280px, 38vw, 460px);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: clamp(10px, 2vh, 20px);
+}
+.brand-slide .brand-product-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(3px, 0.5vh, 6px); width: 100%;
+}
+.brand-slide .brand-product-grid img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; opacity: 0.85;
+}
+.brand-slide .brand-info {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  gap: clamp(10px, 1.8vh, 18px);
+}
+.brand-slide .brand-label { font-size: var(--small-size); letter-spacing: 0.35em; color: var(--gold); font-weight: 500; }
+.brand-slide h2 { font-family: var(--font-display); font-size: var(--h2-size); font-weight: 900; color: var(--text-dark); letter-spacing: 0.05em; line-height: 1.3; }
+.brand-slide .brand-desc { font-size: var(--body-size); color: var(--text-mid); line-height: 1.75; letter-spacing: 0.04em; }
+.brand-slide .brand-desc strong { color: var(--red-bright); }
+
+/* Divider */
+.divider-slide .main-content {
+  flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; gap: clamp(16px, 3vh, 28px);
+}
+.divider-slide .divider-num {
+  font-family: var(--font-display); font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900; opacity: 0.06; position: absolute; right: clamp(20px, 5vw, 60px);
+  bottom: clamp(10px, 3vh, 30px); line-height: 1;
+}
+
+/* Product sub-slides */
+.section-label { font-size: var(--small-size); letter-spacing: 0.35em; color: var(--gold); font-weight: 500; margin-bottom: clamp(6px,1vh,10px); }
+
+/* Hero */
+.prod-hero { position: relative; }
+.prod-hero .main-content { justify-content: center; text-align: center; position: relative; z-index: 1; }
+.prod-hero .hero-img-wrap { flex: 0 0 clamp(220px, 32vw, 380px); display: flex; align-items: center; justify-content: center; }
+.prod-hero .hero-img-wrap img { max-height: min(55vh, 460px); max-width: 100%; object-fit: contain; filter: drop-shadow(0 12px 32px rgba(0,0,0,0.15)); }
+.prod-hero .hero-info { flex: 1; text-align: left; display: flex; flex-direction: column; justify-content: center; }
+.prod-hero .hero-series { font-size: var(--small-size); letter-spacing: 0.3em; color: var(--gold); margin-bottom: clamp(8px,1.2vh,14px); text-transform: uppercase; }
+.prod-hero h2 { font-family: var(--font-display); font-size: var(--title-size); font-weight: 900; color: var(--text-dark); line-height: 1.15; }
+.prod-hero .hero-tagline { font-size: var(--h3-size); color: var(--red-bright); margin-top: clamp(10px,1.5vh,18px); letter-spacing: 0.1em; }
+.prod-hero .hero-desc { font-size: var(--body-size); color: var(--text-light); margin-top: clamp(12px,2vh,20px); line-height: 1.6; max-width: 32em; }
+/* Product number badge */
+.prod-hero .prod-num {
+  position: absolute; top: clamp(80px, 12vh, 140px); right: clamp(24px, 4vw, 48px);
+  font-family: var(--font-display); font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 900; opacity: 0.04; line-height: 1; z-index: 0;
+  pointer-events: none;
+}
+/* Category accent bar on hero */
+.prod-hero .cat-accent {
+  position: absolute; top: clamp(80px, 14vh, 160px); left: calc(clamp(60px, 10vw, 120px) + clamp(3px, 0.5vw, 6px) + clamp(24px, 4vw, 48px));
+  width: clamp(30px, 4vw, 60px); height: 3px; border-radius: 2px; z-index: 1;
+}
+.prod-hero .cat-accent.red { background: var(--red-bright); }
+.prod-hero .cat-accent.amber { background: var(--granule); }
+.prod-hero .cat-accent.plum { background: var(--drink); }
+
+/* Function */
+.prod-func .main-content { align-items: stretch; }
+.prod-func .func-left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.prod-func .func-right { flex: 0 0 clamp(260px, 35vw, 420px); display: flex; align-items: center; justify-content: center; }
+.prod-func .func-right img { max-height: min(55vh,460px); max-width: 100%; object-fit: contain; border-radius: 6px; }
+.prod-func .symptom-list { display: flex; flex-direction: column; gap: clamp(8px,1.2vh,14px); margin-top: clamp(10px,1.5vh,18px); }
+.prod-func .symptom-item { display: flex; align-items: flex-start; gap: clamp(8px,1.2vw,14px); padding: clamp(8px,1.2vh,14px) clamp(10px,1.5vw,18px); background: rgba(255,255,255,0.5); border: 1px solid rgba(201,169,110,0.15); border-radius: 5px; }
+.prod-func .s-num { flex-shrink: 0; width: clamp(24px,3vw,32px); height: clamp(24px,3vw,32px); border-radius: 50%; background: var(--red-bright); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: var(--small-size); display: flex; align-items: center; justify-content: center; }
+.prod-func .s-body h4 { font-size: var(--body-size); font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+.prod-func .s-body p { font-size: var(--small-size); color: var(--text-light); }
+
+/* Ingredients */
+.prod-ingr .main-content { align-items: stretch; }
+.prod-ingr .ingr-left { flex: 0 0 clamp(220px, 30vw, 360px); display: flex; align-items: center; justify-content: center; }
+.prod-ingr .ingr-left img { max-height: min(50vh,400px); max-width: 100%; object-fit: contain; border-radius: 6px; }
+.prod-ingr .ingr-right { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: clamp(8px,1vh,12px); }
+.prod-ingr.many-herbs .ingr-right { gap: clamp(3px,0.6vh,8px); }
+.prod-ingr.many-herbs .herb-card { padding: clamp(4px,0.8vh,8px) clamp(8px,1.5vw,14px); }
+.prod-ingr.many-herbs .herb-name { font-size: calc(var(--body-size)*0.92); }
+.prod-ingr.many-herbs .herb-effect { font-size: calc(var(--small-size)*0.92); }
+.prod-ingr .herb-card { display: flex; align-items: center; gap: clamp(8px,1.2vw,14px); padding: clamp(8px,1.2vh,12px) clamp(10px,1.5vw,16px); border-radius: 5px; border-left: 3px solid; }
+.prod-ingr .herb-card.jun { border-color: var(--red-bright); background: rgba(181,52,58,0.04); }
+.prod-ingr .herb-card.chen { border-color: rgba(181,52,58,0.5); background: rgba(181,52,58,0.02); }
+.prod-ingr .herb-card.zuo { border-color: var(--gold); background: rgba(201,169,110,0.04); }
+.prod-ingr .herb-card.shi { border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.02); }
+.prod-ingr .herb-badge { flex-shrink: 0; font-size: calc(var(--small-size)*0.85); font-weight: 700; padding: clamp(2px,0.3vh,4px) clamp(6px,0.8vw,10px); border-radius: 3px; }
+.prod-ingr .jun .herb-badge { background: var(--red-bright); color: #fff; }
+.prod-ingr .chen .herb-badge { background: rgba(181,52,58,0.15); color: var(--red-bright); }
+.prod-ingr .zuo .herb-badge { background: rgba(201,169,110,0.2); color: var(--gold-dark); }
+.prod-ingr .shi .herb-badge { background: rgba(201,169,110,0.1); color: var(--gold-dark); }
+.prod-ingr .herb-card .herb-name { font-weight: 700; font-size: var(--body-size); color: var(--text-dark); min-width: clamp(48px,6vw,64px); }
+.prod-ingr .herb-card .herb-effect { font-size: var(--small-size); color: var(--text-mid); line-height: 1.4; }
+
+/* Mechanism */
+.prod-mech .main-content { flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: clamp(16px,3vh,30px); }
+.prod-mech .mech-flow { display: flex; align-items: center; gap: clamp(8px,1.5vw,14px); flex-wrap: wrap; justify-content: center; }
+.prod-mech .mech-step { flex: 1; min-width: clamp(140px,20vw,220px); padding: clamp(14px,2vh,22px) clamp(10px,1.5vw,18px); background: rgba(255,255,255,0.55); border: 1px solid rgba(201,169,110,0.15); border-radius: 8px; text-align: center; }
+.prod-mech .mech-step .m-icon { font-size: clamp(1.5rem,3vw,2.2rem); margin-bottom: clamp(6px,1vh,10px); }
+.prod-mech .mech-step h4 { font-family: var(--font-display); font-size: var(--body-size); font-weight: 700; color: var(--red-bright); margin-bottom: 4px; }
+.prod-mech .mech-step p { font-size: var(--small-size); color: var(--text-light); line-height: 1.5; }
+.prod-mech .mech-arrow { font-size: clamp(1rem,2vw,1.5rem); color: var(--gold); flex-shrink: 0; }
+
+/* Usage */
+.prod-usage .main-content { align-items: stretch; }
+.prod-usage .usage-left { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: clamp(12px,2vh,20px); }
+.prod-usage .usage-right { flex: 0 0 clamp(240px,32vw,400px); display: flex; align-items: center; justify-content: center; }
+.prod-usage .usage-right img { max-height: min(50vh,400px); max-width: 100%; object-fit: contain; border-radius: 6px; }
+.prod-usage .usage-block { padding: clamp(10px,1.5vh,16px) clamp(12px,2vw,18px); background: rgba(255,255,255,0.5); border: 1px solid rgba(201,169,110,0.15); border-radius: 6px; }
+.prod-usage .usage-block h4 { font-family: var(--font-display); font-size: var(--body-size); font-weight: 700; color: var(--red-bright); margin-bottom: clamp(4px,0.8vh,8px); }
+.prod-usage .usage-block p { font-size: var(--small-size); color: var(--text-mid); line-height: 1.6; }
+.prod-usage .contraindicate { padding: clamp(10px,1.5vh,16px) clamp(12px,2vw,18px); background: rgba(181,52,58,0.04); border: 1px solid rgba(181,52,58,0.2); border-radius: 6px; border-left: 3px solid var(--red-bright); }
+.prod-usage .contraindicate h4 { font-family: var(--font-display); font-size: var(--body-size); font-weight: 700; color: var(--red-bright); margin-bottom: clamp(4px,0.8vh,8px); }
+.prod-usage .contraindicate p { font-size: var(--small-size); color: var(--text-mid); line-height: 1.6; }
+
+/* Progress bar & nav */
+.progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--red-bright); z-index: 1000; transition: width 0.3s ease; }
+.nav-dots { position: fixed; right: clamp(12px, 2vw, 20px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: clamp(10px, 1.5vh, 16px); z-index: 1000; }
+.nav-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(181,52,58,0.25); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+.nav-dots .dot.active { background: var(--red-bright); transform: scale(1.3); }
+
+/* Responsive */
+@media (max-height: 700px) {
+  :root { --title-size: clamp(1.5rem, 4.5vw, 2.5rem); --h2-size: clamp(1.1rem, 2.8vw, 1.6rem); }
+  .prod-hero .prod-num { font-size: clamp(3rem, 8vw, 7rem); }
+}
+@media (max-height: 600px) {
+  :root { --body-size: clamp(0.65rem, 1.2vw, 0.85rem); }
+  .nav-dots { display: none; }
+}
+@media (max-width: 600px) {
+  .prod-hero .main-content, .prod-func .main-content, .prod-ingr .main-content, .prod-usage .main-content { flex-direction: column; justify-content: center; gap: clamp(1rem, 2vh, 2rem); }
+  .prod-hero .hero-img-wrap, .prod-func .func-right, .prod-ingr .ingr-left, .prod-usage .usage-right { flex: 0 0 auto; max-height: min(25vh, 180px); }
+  .prod-hero .prod-num { font-size: clamp(2.5rem, 6vw, 5rem); }
+  .nav-dots { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+@media print {
+  @page { size: 16in 9in landscape; margin: 0; }
+  html { scroll-snap-type: none; }
+  body { overflow: visible; }
+  .slide {
+    page-break-after: always;
+    scroll-snap-align: none;
+  }
+  .slide:last-child { page-break-after: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .nav-dots, .progress-bar { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+
+
+<!-- COVER -->
+<section class="slide slide-chrome cover-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="geo-rect geo-rect-1"></div>
+    <div class="geo-rect geo-rect-2"></div>
+    <div class="content">
+      <p class="overline reveal">药 食 同 源</p>
+      <h1 class="reveal">参鸽堂<br><span class="highlight">产品手册</span></h1>
+      <p class="tagline reveal">百年药企<span class="gold-dot"></span>九味古方</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND -->
+<section class="slide slide-chrome brand-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="brand-image-wrap reveal">
+      <div class="brand-product-grid">
+        <img src="images/6H1A8774_1.jpg" alt="红豆薏米茶">
+        <img src="images/6H1A8601_1.jpg" alt="红参玫瑰茶">
+        <img src="images/6H1A8767_1.jpg" alt="桑椹五黑茶">
+        <img src="images/6H1A8747_1.jpg" alt="酸枣仁百合茶">
+        <img src="images/6H1A8708_1.jpg" alt="人参八物茶">
+        <img src="images/6H1A9237_1.jpg" alt="枸杞红糖姜茶">
+        <img src="images/6H1A9132_1.jpg" alt="酸枣仁百合饮">
+        <img src="images/6H1A9116_1.jpg" alt="金荟猕猴桃饮">
+        <img src="images/6H1A9208_1.jpg" alt="十四物地黄饮">
+      </div>
+    </div>
+    <div class="brand-info">
+      <p class="brand-label reveal">品 牌 介 绍</p>
+      <h2 class="reveal">药食同源<br><span style="color:var(--red-bright);">参鸽轻养</span></h2>
+      <p class="brand-desc reveal"><strong>参鸽堂</strong>（黑龙江参鸽堂大健康科技有限公司），参鸽药业（始创于1910年）控股子公司，承袭百年制药经验，扎根东北道地药材核心产区，从源头把控品质。</p>
+      <p class="brand-desc reveal">品牌遵循"<strong>以食为疗、寓医于食</strong>"的中医传统理念，以经典古方为根基，精选药食同源原料，运用现代工艺精制而成。旗下产品覆盖<strong>茶包、颗粒与直饮</strong>三大品类，从祛湿健脾、补气养血到安神助眠，辨证搭配，一味一境。</p>
+      <p class="brand-desc reveal">茶包系列独立小袋，热水冲泡即可；颗粒系列一冲即溶；直饮系列开袋即饮，<strong>便捷随身</strong>。让日常养生轻松融入生活节奏。</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: 茶包系列 -->
+<section class="slide slide-chrome divider-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="reveal" style="font-size:var(--small-size);letter-spacing:0.4em;color:var(--gold);">参 鸽 堂</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--title-size);font-weight:900;color:var(--red-bright);line-height:1.2;">茶包系列</h2>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);max-width:24em;line-height:1.7;">独立小袋，即拆即泡<br>热水冲泡3-5分钟，随时随地的养生便利</p>
+    <div class="divider-num">00</div>
+  </div>
+</section>
+
+<!-- 红豆薏米茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">01</div>
+  <div class="cat-accent red"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A8774_1.jpg" alt="红豆薏米茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">茶包系列 · 祛湿健脾</p>
+      <h2 class="reveal">红豆薏米茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--red-bright);">每天来一杯，身体轻松不沉重</p>
+      <p class="hero-desc reveal">九味道地药食同源原料科学配伍，专攻湿气困脾所致浮肿虚胖、倦怠乏力、食欲不振、大便黏腻。茶包独立小袋，即拆即泡，随时随地轻松祛湿。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">9</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地原料</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">3-5</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">分钟即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 红豆薏米茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">湿气困脾的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“脾主运化水湿”。饮食不节、久坐少动、贪凉饮冷，皆可损伤脾胃，水液代谢失常，湿气内生。轻则浮肿倦怠，重则痰湿积聚引发肥胖。红豆薏米茶以<strong style="color:var(--red-bright);">健脾祛湿</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>浮肿虚胖</h4><p>晨起眼睑浮肿、下肢沉重，体重不重但看起来虚胖</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>倦怠乏力</h4><p>全身困重、懒得动，睡够8小时还是觉得累</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>食欲不振</h4><p>口中黏腻无味、饭后腹胀不消化</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>大便黏腻</h4><p>大便不成形、粘马桶、冲不干净</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>舌苔厚腻</h4><p>舌体胖大、边缘有齿痕，舌苔白厚或发黄</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/湿气困脾.png" alt="红豆薏米茶">
+    </div>
+  </div>
+</section>
+
+<!-- 红豆薏米茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9066.jpg" alt="红豆薏米茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">9味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">赤小豆</span>
+        <span class="herb-effect">性平，味甘酸，归心小肠经。利水消肿、解毒排脓，专攻水湿。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">薏苡仁</span>
+        <span class="herb-effect">性凉，味甘淡，归脾胃肺经。健脾渗湿、利水不伤正，增强祛湿之力。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">茯苓</span>
+        <span class="herb-effect">性平，味甘淡，归心脾肾经。健脾宁心、利水渗湿，兼顾心神不宁。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">大麦</span>
+        <span class="herb-effect">性凉，味甘咸，归脾胃经。健脾和胃、宽肠利水，兼调和口感。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">芡实</span>
+        <span class="herb-effect">性平，味甘涩，归脾肾经。益肾固精、补脾止泻，防利水太过伤正。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红豆</span>
+        <span class="herb-effect">性平，味甘酸，归心小肠经。利水消肿兼养血，与赤小豆相须为用。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">栀子</span>
+        <span class="herb-effect">性寒，味苦，归心肝胃经。清热利湿、凉血除烦，解湿郁化热之象。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黄苦荞</span>
+        <span class="herb-effect">性凉，味苦，归脾胃大肠经。健脾除湿、消积降气，助运化水谷。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">橘皮</span>
+        <span class="herb-effect">性温，味辛苦，归脾肺经。理气健脾、燥湿化痰，引诸本草入脾肺经。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 红豆薏米茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">健脾 → 利湿 → 固本，三步祛湿不反弹</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">⚙️</div>
+        <h4>第一步：健脾运化</h4>
+        <p>薏苡仁、茯苓、大麦、橘皮四味协同，恢复脾胃运化水湿的功能。脾为生湿之源，健脾即断湿气来路。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">💧</div>
+        <h4>第二步：利水排湿</h4>
+        <p>赤小豆力专利水消肿，栀子清热利湿，将已生成的湿气通过小便排出体外，消肿减重。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🛡️</div>
+        <h4>第三步：固本防复发</h4>
+        <p>芡实补脾固精、益肾止泻，防止利水太过而伤正气，重建水液代谢平衡，湿气不再反复。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">九味合用，遵循“<strong style="color:var(--red-bright);">祛湿不伤正，利水不耗气</strong>”的原则。赤小豆利水消肿、薏苡仁健脾渗湿；茯苓、大麦健脾和胃；芡实、红豆、栀子、黄苦荞固涩养血、清热消积；橘皮理气健脾。标本兼治，湿去而脾健。</p>
+  </div>
+</section>
+
+<!-- 红豆薏米茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>湿气重、浮肿虚胖、久坐少动、饮食油腻、大便黏腻不成形者。尤其适合长期在空调房工作、缺乏运动的上班族，以及夏季湿热季节需要祛湿调理的人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋置入杯中，倒入约300mL沸水，冲泡3-5分钟即可饮用。一次一袋，一日1-2次，建议饭后半小时饮用。可反复冲泡至味淡。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>祛湿期间建议配合清淡饮食，减少油腻、生冷、甜食摄入。适当运动出汗有助于加速湿气排出。可与薏米粥、冬瓜汤等食疗搭配，效果更佳。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品含麸质谷物及其制品，过敏者慎用。本品为代用茶，不可替代药品。如正在服用其他药物，请咨询医师。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A8774_1.jpg" alt="红豆薏米茶">
+    </div>
+  </div>
+</section>
+
+<!-- 红参玫瑰茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">02</div>
+  <div class="cat-accent red"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A8601_1.jpg" alt="红参玫瑰茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">茶包系列 · 补气养血</p>
+      <h2 class="reveal">红参玫瑰茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--red-bright);">气血双补，面若桃花好气色</p>
+      <p class="hero-desc reveal">九味道地药食同源原料科学配伍，以红参、桂圆红枣为核心，专攻气血不足所致面色萎黄、疲倦乏力、手脚冰凉、月经不调。茶包独立小袋，即拆即泡，温润滋养每一天。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">9</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地原料</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">3-5</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">分钟即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 红参玫瑰茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">气血不足的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“气为血之帅，血为气之母”。气血互生互用，一荣俱荣、一损俱损。饮食不调、思虑过度、熬夜耗神，皆可暗耗气血。轻则面色无华、神疲乏力，重则月经紊乱、早衰之象。红参玫瑰茶以<strong style="color:var(--red-bright);">益气养血、疏肝解郁</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>面色萎黄</h4><p>脸色暗沉无光泽、唇色淡白，化妆品遮不住底子里的疲惫</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>疲倦乏力</h4><p>说话有气无力、稍微活动就心慌气短，总想躺着</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>手脚冰凉</h4><p>一年四季手脚不温，冬天尤甚，暖水袋不离手</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>月经不调</h4><p>经期推迟、量少色淡，或经前乳房胀痛、情绪烦躁</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>失眠多梦</h4><p>入睡困难、睡眠浅易惊醒，晨起仍觉疲惫</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/症状.png" alt="红参玫瑰茶">
+    </div>
+  </div>
+</section>
+
+<!-- 红参玫瑰茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9088.jpg" alt="红参玫瑰茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">9味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红参</span>
+        <span class="herb-effect">性温，味甘微苦，归脾肺心肾经。大补元气、复脉固脱、益气摄血。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桂圆</span>
+        <span class="herb-effect">性温，味甘，归心脾经。补益心脾、养血安神，助红参补血之力。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红枣</span>
+        <span class="herb-effect">性温，味甘，归脾胃心经。补中益气、养血安神，与桂圆相须为用。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黄芪</span>
+        <span class="herb-effect">性温，味甘，归脾肺经。补气升阳、固表止汗，助红参益气之效。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">甘草</span>
+        <span class="herb-effect">性平，味甘，归心肺脾胃经。补脾益气、调和诸本草，兼制诸温之燥。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">玫瑰</span>
+        <span class="herb-effect">性温，味甘微苦，归肝脾经。行气解郁、活血调经，兼芳香悦神。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血、生津润燥，制诸温药之燥。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">赤小豆</span>
+        <span class="herb-effect">性平，味甘酸，归心小肠经。利水渗湿，防滋补太过而生湿。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">橘皮</span>
+        <span class="herb-effect">性温，味辛苦，归脾肺经。理气健脾，使补而不滞。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 红参玫瑰茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">补气 → 养血 → 调经，三步养出桃花面</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">⚡</div>
+        <h4>第一步：补气生血</h4>
+        <p>红参大补元气、黄芪补气升阳，气足则血生有源。气能生血，补气即是补血之根。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">💗</div>
+        <h4>第二步：养血安神</h4>
+        <p>桂圆、红枣、桑椹三味协同，养心血、益肝血，血足则面色红润、心神安宁。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🌸</div>
+        <h4>第三步：理气调经</h4>
+        <p>玫瑰疏肝理气、甘草调和诸本草，气血通畅则月经调和、面若桃花。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">九味合用，遵循“<strong style="color:var(--red-bright);">补而不燥，温而不腻</strong>”的原则。红参大补元气；桂圆、红枣、黄芪助益气养血；甘草、玫瑰、桑椹、赤小豆理气活血、滋阴利湿；橘皮理气健脾。气血双补，标本兼治。</p>
+  </div>
+</section>
+
+<!-- 红参玫瑰茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>气血不足、面色萎黄、手脚冰凉、月经量少色淡、产后体虚、长期熬夜耗神者。尤其适合工作压力大、经常加班、面色憔悴的职场女性。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋置入杯中，倒入约300mL沸水，冲泡3-5分钟即可饮用。一次一袋，一日1-2次，建议上午饮用。可反复冲泡至味淡。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>补气血期间建议配合规律作息，避免熬夜。可与红枣粥、当归炖鸡等食疗搭配。经期量多者建议经后再饮。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品含红参，不宜与藜芦、五灵脂同用。本品为代用茶，不可替代药品。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A8601_1.jpg" alt="红参玫瑰茶">
+    </div>
+  </div>
+</section>
+
+<!-- 桑椹五黑茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">03</div>
+  <div class="cat-accent red"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A8767_1.jpg" alt="桑椹五黑茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">茶包系列 · 补肾养黑</p>
+      <h2 class="reveal">桑椹五黑茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--red-bright);">以黑养黑，由内而外的乌黑润泽</p>
+      <p class="hero-desc reveal">六味道地黑色食材科学配伍，遵循中医“黑色入肾“理论，专攻肾精不足所致须发早白、脱发掉发、腰膝酸软、精力不济。茶包独立小袋，即拆即泡，以黑养黑，自然润泽。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">6</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味黑色食材</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">3-5</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">分钟即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 桑椹五黑茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">肾精不足的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“肾藏精，其华在发”。肾精充足则头发乌黑有光泽、骨骼强健、精力充沛。熬夜、劳累、久病皆可耗伤肾精，发为血之余，精血同源。桑椹五黑茶以<strong style="color:var(--red-bright);">补肾益精、养血乌发</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>须发早白</h4><p>年纪不大却白发渐多，头发干枯无光泽、易断裂</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>脱发掉发</h4><p>梳头洗头时大把掉发，发际线后移、发量明显减少</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>腰膝酸软</h4><p>久站久行后腰酸腿软，上下楼梯膝盖无力</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>精力不济</h4><p>总觉疲惫、注意力不集中，记忆力下降</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>失眠健忘</h4><p>入睡困难、多梦，白天头昏脑涨、反应迟钝</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_171604_652.png" alt="桑椹五黑茶">
+    </div>
+  </div>
+</section>
+
+<!-- 桑椹五黑茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9112.jpg" alt="桑椹五黑茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">6味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血、生津润燥、乌发明目。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑芝麻</span>
+        <span class="herb-effect">性平，味甘，归肝肾大肠经。补肝肾、益精血、润肠燥，助桑椹养血乌发。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑豆</span>
+        <span class="herb-effect">性平，味甘，归脾肾经。补肾益阴、健脾利湿，黑豆形似肾，以形补形。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑米</span>
+        <span class="herb-effect">性温，味甘，归脾胃经。滋阴补肾、健脾暖肝、明目活血，药食两用之珍品。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑果枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，富含花青素。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑果腺肋花楸果</span>
+        <span class="herb-effect">性平，味甘酸，归肝肾经。富含原花青素与多酚，抗氧化、益肝肾。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 桑椹五黑茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">补肾 → 养血 → 乌发，三步养出乌黑秀发</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">🖤</div>
+        <h4>第一步：补肾填精</h4>
+        <p>桑椹、黑豆、黑米三味协同，补益肾精。肾藏精，精生血，精足则血有源。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">💆</div>
+        <h4>第二步：养血润发</h4>
+        <p>黑芝麻富含维生素E与不饱和脂肪酸，配合桑椹滋养发根，血足则发得濡养。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">✨</div>
+        <h4>第三步：抗氧化护发</h4>
+        <p>黑果枸杞花青素、黑果腺肋花楸果原花青素，清除自由基，延缓毛囊老化。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">六味合用，遵循“<strong style="color:var(--red-bright);">黑色入肾，以黑养黑</strong>”的中医理论。桑椹滋阴补血；黑芝麻、黑豆助益精血；黑米、黑果枸杞补肝肾；黑果腺肋花楸果富含原花青素。六黑合力，内外兼养。</p>
+  </div>
+</section>
+
+<!-- 桑椹五黑茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>须发早白、脱发掉发、发质干枯、腰膝酸软、精力不足者。尤其适合长期熬夜、工作压力大、用脑过度导致早生白发的人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋置入杯中，倒入约300mL沸水，冲泡3-5分钟即可饮用。一次一袋，一日1-2次，建议下午或晚间饮用。可反复冲泡至味淡。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>养发期间建议配合规律作息、减少熬夜。可与黑芝麻糊、核桃等食疗搭配。外用配合头皮按摩效果更佳。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品为代用茶，不可替代药品。大便溏泄者慎用（含黑芝麻润肠）。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A8767_1.jpg" alt="桑椹五黑茶">
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">04</div>
+  <div class="cat-accent red"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A8747_1.jpg" alt="酸枣仁百合茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">茶包系列 · 安神助眠</p>
+      <h2 class="reveal">酸枣仁百合茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--red-bright);">睡前一盏，还你一夜深睡眠</p>
+      <p class="hero-desc reveal">八味道地药食同源原料科学配伍，以酸枣仁、百合为核心，专攻心神不宁所致入睡困难、浅睡多梦、易醒早醒。茶包独立小袋，即拆即泡，睡前一杯，安神入梦。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">8</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地原料</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">3-5</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">分钟即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">心神不宁的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“心藏神，肝藏魂”。心肝血虚则神魂不安，虚火扰心则难以入眠。思虑过度、压力山大、更年期前后，皆可暗耗心肝之血。酸枣仁百合茶以<strong style="color:var(--red-bright);">养心安神、滋阴清热</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>入睡困难</h4><p>躺下脑子停不下来，翻来覆去一两个小时才能睡着</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>浅睡多梦</h4><p>一晚上做梦不断，稍有动静就醒，睡不踏实</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>易醒早醒</h4><p>凌晨三四点醒来再也睡不着，睁眼到天亮</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>心烦焦虑</h4><p>白天心慌心悸、坐立不安，情绪波动大、易怒</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>健忘头昏</h4><p>睡眠不足导致白天昏沉、注意力涣散、记忆力下降</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_172103_029.png" alt="酸枣仁百合茶">
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9119_1.jpg" alt="酸枣仁百合茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">8味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">酸枣仁</span>
+        <span class="herb-effect">性平，味甘酸，归心肝胆经。养心益肝、安神敛汗，为治失眠要药。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">百合</span>
+        <span class="herb-effect">性微寒，味甘，归心肺经。清心安神、养阴润肺，助酸枣仁宁心。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">莲子</span>
+        <span class="herb-effect">性平，味甘涩，归脾肾心经。补脾益肾、养心安神，交通心肾。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">茯苓</span>
+        <span class="herb-effect">性平，味甘淡，归心脾肾经。宁心安神、健脾渗湿，安神不忘健脾。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桂圆</span>
+        <span class="herb-effect">性温，味甘，归心脾经。补益心脾、养血安神，兼顾心脾气血。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血，血足则神安。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，肝肾同补。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">山药</span>
+        <span class="herb-effect">性平，味甘，归脾肺肾经。补脾养胃、益肾固精，培土生金、安和五脏。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">养心 → 滋阴 → 安神，三步换一夜安睡</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">🧠</div>
+        <h4>第一步：养心益肝</h4>
+        <p>酸枣仁直入心肝二经，养心血、益肝血。心藏神、肝藏魂，心血肝血充足则神魂自安。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">💧</div>
+        <h4>第二步：滋阴清热</h4>
+        <p>百合清心润肺、桑椹滋阴养血，阴液充足则虚火自降，心神不被热扰。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">😴</div>
+        <h4>第三步：交通心肾</h4>
+        <p>莲子、茯苓健脾宁心、交通心肾，心火下降、肾水上济，水火既济则安眠。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">八味合用，遵循“<strong style="color:var(--red-bright);">养心安神，滋阴清热</strong>”的原则。酸枣仁养心益肝；百合、莲子、茯苓清心安神、宁心健脾；桂圆、桑椹、枸杞补血滋阴；山药培补脾肾。心肝脾肾同调，治失眠求其本。</p>
+  </div>
+</section>
+
+<!-- 酸枣仁百合茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>入睡困难、浅睡多梦、易醒早醒、心烦焦虑者。尤其适合工作压力大、思虑过度、更年期前后睡眠质量下降的人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋置入杯中，倒入约300mL沸水，冲泡3-5分钟即可饮用。一次一袋，一日1次，建议睡前1小时饮用。可反复冲泡至味淡。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>助眠期间建议配合规律作息，睡前避免刷手机、喝浓茶咖啡。可与温牛奶、泡脚等助眠习惯搭配。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品为代用茶，不可替代药品。如正在服用镇静类药物，请咨询医师。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A8747_1.jpg" alt="酸枣仁百合茶">
+    </div>
+  </div>
+</section>
+
+<!-- 人参八物茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">05</div>
+  <div class="cat-accent red"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A8903.jpg" alt="人参八物茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">茶包系列 · 补元养精</p>
+      <h2 class="reveal">人参八物茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--red-bright);">八味补元，重燃生命活力</p>
+      <p class="hero-desc reveal">八味道地药食同源原料科学配伍，以人参、黄精枸杞为核心，专攻元气亏虚所致精力不济、易疲劳、免疫力低下、腰膝酸软。茶包独立小袋，即拆即泡，补元气、强精力。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">8</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地原料</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--red-bright);">3-5</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">分钟即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 人参八物茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">元气亏虚的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“元气者，生之根本也”。元气禀受于先天，赖后天水谷精微充养。过度劳累、久病耗损、房事不节，皆可暗耗元气。元气亏则百病生。人参八物茶以<strong style="color:var(--red-bright);">大补元气、益精填髓</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>精力不济</h4><p>容易疲劳、稍微活动就气喘，下班回家只想躺着</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>免疫力低</h4><p>容易感冒、换季必中招，恢复慢、反复发作</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>腰膝酸软</h4><p>久坐久站后腰酸背痛，双腿无力、爬楼喘</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>性功能减退</h4><p>性欲下降、力不从心，夫妻生活质量明显降低</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>记忆力差</h4><p>注意力不集中、忘性大，工作效率明显下降</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_172150_325.png" alt="人参八物茶">
+    </div>
+  </div>
+</section>
+
+<!-- 人参八物茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9042.jpg" alt="人参八物茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">8味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">人参</span>
+        <span class="herb-effect">性温，味甘微苦，归脾肺心肾经。大补元气、复脉固脱、安神益智。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黄精</span>
+        <span class="herb-effect">性平，味甘，归脾肺肾经。补气养阴、健脾润肺、益肾填精，助人参补而不燥。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，肝肾同补以固根本。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">大枣</span>
+        <span class="herb-effect">性温，味甘，归脾胃心经。补中益气、养血安神，助脾胃运化以生气血。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血，制参之温，使补而不上火。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">覆盆子</span>
+        <span class="herb-effect">性温，味甘酸，归肝肾经。益肾固精、缩尿养肝，补而能涩。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">玛咖</span>
+        <span class="herb-effect">性温，味辛甘，归肾经。补肾壮阳、抗疲劳，现代研究表明富含玛咖酰胺和玛咖烯。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">橘皮</span>
+        <span class="herb-effect">性温，味辛苦，归脾肺经。理气健脾，助诸本草补而不滞。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 人参八物茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">补元气 → 填肾精 → 健脾胃，三步重燃活力</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">⚡</div>
+        <h4>第一步：大补元气</h4>
+        <p>人参直补元气，为补气诸本草之最。元气足则五脏六腑功能旺盛，精力充沛。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🧬</div>
+        <h4>第二步：益精填髓</h4>
+        <p>黄精、枸杞、覆盆子、玛咖四味协同，补肾填精。肾藏精，精足则生命力旺盛。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🍚</div>
+        <h4>第三步：健脾生血</h4>
+        <p>大枣、橘皮健脾和胃、理气化滞。脾胃为气血生化之源，脾胃健则后天养先天。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">八味合用，遵循“<strong style="color:var(--red-bright);">补而不燥，温而不烈</strong>”的原则。人参大补元气；黄精、枸杞、大枣助益气养阴；桑椹、覆盆子、玛咖滋阴固精；橘皮理气健脾。先天后天同补，元气源源不绝。</p>
+  </div>
+</section>
+
+<!-- 人参八物茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>元气亏虚、精力不济、易疲劳、免疫力低下、性功能减退者。尤其适合长期加班、应酬多、体力透支的职场男性及产后体虚人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋置入杯中，倒入约300mL沸水，冲泡3-5分钟即可饮用。一次一袋，一日1-2次，建议上午饮用。可反复冲泡至味淡。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>补元气期间建议配合充足睡眠、适当运动。可与山药粥、鸡汤等食疗搭配。不宜与浓茶、咖啡同时饮用。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品含人参，不宜与藜芦、五灵脂同用。感冒发热期间暂停饮用。本品为代用茶，不可替代药品。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A8708_1.jpg" alt="人参八物茶">
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: 颗粒系列 -->
+<section class="slide slide-chrome divider-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="reveal" style="font-size:var(--small-size);letter-spacing:0.4em;color:var(--gold);">参 鸽 堂</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--title-size);font-weight:900;color:var(--granule);line-height:1.2;">颗粒系列</h2>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);max-width:24em;line-height:1.7;">古法红糖为基，复配名贵本草<br>一冲即溶，暖身暖宫暖心胃</p>
+    <div class="divider-num">00</div>
+  </div>
+</section>
+
+<!-- 枸杞红糖姜茶 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">06</div>
+  <div class="cat-accent amber"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A9237_1.jpg" alt="枸杞红糖姜茶">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">颗粒系列 · 暖宫驱寒</p>
+      <h2 class="reveal">枸杞红糖姜茶</h2>
+      <p class="hero-tagline reveal" style="color:var(--granule);">一杯暖全身，告别手脚冰凉</p>
+      <p class="hero-desc reveal">七味道地食材科学配伍，以生姜红糖、红枣桂圆为核心，专攻阳虚宫寒所致手脚冰凉、痛经畏寒、胃寒腹痛。一冲即溶，暖心暖胃暖全身。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--granule);">7</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味精选食材</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--granule);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--granule);">即冲</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 枸杞红糖姜茶 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">阳虚宫寒的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“阳虚则外寒”。阳气不足则温煦无力，寒气内生。贪凉饮冷、穿衣单薄、久坐不动，皆可损伤阳气。女性经期受寒更易致宫寒痛经。枸杞红糖姜茶以<strong style="color:var(--granule);">温经散寒、暖宫养血</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>手脚冰凉</h4><p>一年四季手脚不暖，冬天尤甚，一晚上被窝都捂不热</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>痛经畏寒</h4><p>经期小腹冷痛，热敷能缓解，经血有血块、颜色暗</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>胃寒腹痛</h4><p>吃凉的就胃痛腹胀，喝热水才舒服</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>面色苍白</h4><p>脸色白而无华，唇色淡，容易头晕</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>容易感冒</h4><p>怕冷怕风，换季必感冒，抵抗力差</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_171912_476.png" alt="枸杞红糖姜茶">
+    </div>
+  </div>
+</section>
+
+<!-- 枸杞红糖姜茶 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9152.jpg" alt="枸杞红糖姜茶">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">7味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">生姜</span>
+        <span class="herb-effect">性温，味辛，归肺脾胃经。解表散寒、温中止呕，为暖中第一品。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红糖</span>
+        <span class="herb-effect">性温，味甘，归脾胃肝经。温中补虚、活血化瘀，与生姜相伍温通并举。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红枣</span>
+        <span class="herb-effect">性温，味甘，归脾胃心经。补中益气、养血安神，助红糖养血之力。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桂圆</span>
+        <span class="herb-effect">性温，味甘，归心脾经。补益心脾、养血安神，气血双补。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，兼顾扶正。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红参</span>
+        <span class="herb-effect">性温，味甘微苦，归脾肺心肾经。大补元气、益气摄血，助阳之力更强。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">蜂蜜</span>
+        <span class="herb-effect">性平，味甘，归脾肺大肠经。补中润燥、调和诸本草，兼调味。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 枸杞红糖姜茶 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">散寒 → 暖宫 → 养血，三步调出温暖体质</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">🔥</div>
+        <h4>第一步：温中散寒</h4>
+        <p>生姜辛温发散，红糖温中补虚，二味直达脾胃，驱散体内寒邪。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🌺</div>
+        <h4>第二步：暖宫养血</h4>
+        <p>红枣、桂圆补血养心，红参大补元气，气血充足则胞宫得暖。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🛡️</div>
+        <h4>第三步：扶正固本</h4>
+        <p>枸杞滋补肝肾、蜂蜜调和诸本草，温而不燥，标本兼治。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">七味合用，遵循“<strong style="color:var(--granule);">温而不燥，补而不腻</strong>”的原则。生姜、红糖温经散寒；红枣、桂圆养血安神；枸杞、红参益气滋阴；蜂蜜调和诸本草。寒散血行，周身温暖。</p>
+  </div>
+</section>
+
+<!-- 枸杞红糖姜茶 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel amber">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>手脚冰凉、痛经宫寒、胃寒腹痛、怕冷畏寒者。尤其适合体寒女性经期前后饮用，以及冬季手足不温、容易感冒的人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>取一袋倒入杯中，加入约200mL热水，搅拌均匀即可饮用。一次一袋，一日1-2次。经期前三天开始饮用效果更佳，经期量多者经期暂停。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>暖宫驱寒期间建议少吃生冷、注意腹部保暖。可与艾灸、泡脚等外治法搭配。早晨空腹一杯效果最好。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。经期量多者慎用。阴虚火旺、口干舌燥者慎用。本品含红糖，糖尿病患者慎用。本品为代用茶，不可替代药品。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A9237_1.jpg" alt="枸杞红糖姜茶">
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: 直饮系列 -->
+<section class="slide slide-chrome divider-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="reveal" style="font-size:var(--small-size);letter-spacing:0.4em;color:var(--gold);">参 鸽 堂</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--title-size);font-weight:900;color:var(--drink);line-height:1.2;">直饮系列</h2>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);max-width:24em;line-height:1.7;">开袋即饮，免冲免泡<br>现代工艺融合本草精华，便捷养生新方式</p>
+    <div class="divider-num">00</div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合饮 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">07</div>
+  <div class="cat-accent plum"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A9132_1.jpg" alt="酸枣仁百合饮">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">直饮系列 · 安神助眠</p>
+      <h2 class="reveal">酸枣仁百合饮</h2>
+      <p class="hero-tagline reveal" style="color:var(--drink);">开袋即饮，安然入梦</p>
+      <p class="hero-desc reveal">酸枣仁、百合、莲子等七味道地药食同源本草科学配伍，专攻入睡困难、浅睡多梦、睡眠质量差。独立便携包装，开袋即饮，随时随地安睡。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">7</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地本草</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">即开</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合饮 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">入睡困难、浅睡多梦的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“心藏神，肝藏魂”，心神不安则入睡困难，肝魂不宁则多梦易醒。思虑过度、压力焦虑、作息紊乱，皆可暗耗心肝之血，血不养神则失眠。酸枣仁百合饮以<strong style="color:var(--drink);">养心安神、清热除烦</strong>为核心，从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>入睡困难</h4><p>躺下脑子停不下来，翻来覆去一两个小时才能入睡</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>浅睡多梦</h4><p>整晚做梦不断，稍有动静就醒，深度睡眠不足</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>易醒早醒</h4><p>凌晨两三点醒了再也睡不着，睁眼到天亮</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>日间疲劳</h4><p>白天头昏脑涨、注意力涣散、工作效率低</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>心烦焦虑</h4><p>因长期睡不好导致心烦易怒、心慌不安</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_172202_748.png" alt="酸枣仁百合饮">
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合饮 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9119_1.jpg" alt="酸枣仁百合饮">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">7味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">酸枣仁</span>
+        <span class="herb-effect">性平，味甘酸，归心肝胆经。养心益肝、安神敛汗，为安神要药。含酸枣仁皂苷，有镇静催眠作用。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">百合</span>
+        <span class="herb-effect">性微寒，味甘，归心肺经。清心安神、养阴润肺，善清心经虚热所致心烦不眠。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">莲子</span>
+        <span class="herb-effect">性平，味甘涩，归脾肾心经。补脾益肾、养心安神，交通心肾使水火既济。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">茯苓</span>
+        <span class="herb-effect">性平，味甘淡，归心脾肾经。健脾宁心安神，利水渗湿使心无痰扰。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血、生津润燥，补肝血以安魂。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红枣</span>
+        <span class="herb-effect">性温，味甘，归脾胃心经。补中益气、养血安神，助心血充足则神自安。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">玫瑰花</span>
+        <span class="herb-effect">性温，味甘微苦，归肝脾经。行气解郁、活血调经，疏肝解郁则心神自宁。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 酸枣仁百合饮 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">养心 + 清心 + 疏肝，三路安神助眠</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">💗</div>
+        <h4>第一步：养心血安神</h4>
+        <p>酸枣仁养心益肝、红枣养血安神、莲子交通心肾，血足则心有所养，神自归位。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🌿</div>
+        <h4>第二步：清心除烦</h4>
+        <p>百合清心安神、茯苓宁心利湿，清心经虚热、除痰湿扰心，心神得宁。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🌸</div>
+        <h4>第三步：疏肝解郁</h4>
+        <p>玫瑰花疏肝理气、桑椹补肝血滋阴，肝气条达、肝血充足，魂得所藏。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">七味本草，遵循“<strong style="color:var(--drink);">养而不燥，清而不寒</strong>”的原则。酸枣仁养心安神为核心；百合、莲子助清心安神；茯苓、桑椹、红枣、玫瑰花健脾养血、疏肝解郁。心神得养、肝魂得藏，自然安睡。</p>
+  </div>
+</section>
+
+<!-- 酸枣仁百合饮 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>入睡困难、浅睡多梦、易醒早醒、因压力焦虑导致睡眠质量下降者。尤其适合工作压力大、经常出差、作息不规律的职场人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>开袋即饮，一次1袋，每日1次。建议睡前30分钟饮用。冷藏后口感更佳，也可常温饮用。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>助眠期间建议配合规律作息，睡前1小时远离手机蓝光。可与泡脚、冥想等放松方式搭配。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。本品为植物饮料，不可替代药品。如正在服用镇静安眠类药物，请咨询医师。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A9132_1.jpg" alt="酸枣仁百合饮">
+    </div>
+  </div>
+</section>
+
+<!-- 金荟猕猴桃饮 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">08</div>
+  <div class="cat-accent plum"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A9116_1.jpg" alt="金荟猕猴桃饮">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">直饮系列 · 润肠通便</p>
+      <h2 class="reveal">金荟猕猴桃饮</h2>
+      <p class="hero-tagline reveal" style="color:var(--drink);">通畅每一天，轻盈无负担</p>
+      <p class="hero-desc reveal">精选猕猴桃、库拉索芦荟凝胶、火麻仁、黄芪、荷叶等药食同源原料，温和润肠、改善便秘。独立便携包装，开袋即饮，温和通便不腹痛。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">温和</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">不腹痛</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">即开</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 金荟猕猴桃饮 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">便秘、肠道不畅的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“大肠者，传导之官，变化出焉”。饮食精细少纤维、饮水不足、久坐少动、阴虚津亏，皆可致肠道传导失常。金荟猕猴桃饮以<strong style="color:var(--drink);">润肠通便、清热导滞</strong>为核心，温和调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>排便困难</h4><p>大便干结如羊屎、排便费力、有排不尽的感觉</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>便秘腹胀</h4><p>几天不排便、腹部胀满不适、食欲下降</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>口臭长痘</h4><p>肠道毒素滞留导致口气不清新、面部爱出油长痘</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>皮肤暗沉</h4><p>肠道毒素累积，面色暗黄无光、色斑加重</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>痔疮加重</h4><p>排便用力加重痔疮，形成恶性循环</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_171726_813.png" alt="金荟猕猴桃饮">
+    </div>
+  </div>
+</section>
+
+<!-- 金荟猕猴桃饮 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9116_1.jpg" alt="金荟猕猴桃饮">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">5味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">库拉索芦荟凝胶</span>
+        <span class="herb-effect">性寒，味苦，归肝胃大肠经。泻下通便、清肝泻热。含芦荟苷和芦荟多糖，温和刺激肠道蠕动。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">火麻仁</span>
+        <span class="herb-effect">性平，味甘，归脾胃大肠经。润肠通便，富含油脂润滑肠道，不伤津液。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">猕猴桃</span>
+        <span class="herb-effect">性寒，味甘酸，归胃经。清热生津、润肠通便。富含膳食纤维和猕猴桃蛋白酶，促进肠道蠕动。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黄芪</span>
+        <span class="herb-effect">性温，味甘，归脾肺经。补气升阳，增强肠道蠕动力量，气足则便自行。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">荷叶</span>
+        <span class="herb-effect">性平，味苦，归肝脾胃经。清暑利湿、升发清阳，兼助降脂清肠。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 金荟猕猴桃饮 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">润肠 + 促蠕动 + 补气，温和通便不伤身</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">💧</div>
+        <h4>第一步：润肠软化</h4>
+        <p>火麻仁富含天然油脂润滑肠道、软化粪便，芦荟凝胶滋润肠壁，解决干结问题。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🔄</div>
+        <h4>第二步：促进蠕动</h4>
+        <p>芦荟温和刺激肠道蠕动、猕猴桃膳食纤维增加粪便体积，推动排便反射。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">⚡</div>
+        <h4>第三步：补气固本</h4>
+        <p>黄芪补气升阳、荷叶升清降浊，增强肠道自主蠕动能力，不依赖刺激。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">五味本草，遵循“<strong style="color:var(--drink);">润而不泻，通而不伤</strong>”的原则。芦荟润肠导滞、火麻仁润肠通便、猕猴桃清热生津、黄芪补气助运、荷叶升清降浊。温和通便，不含番泻叶等刺激性泻药成分。</p>
+  </div>
+</section>
+
+<!-- 金荟猕猴桃饮 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>便秘、排便困难、大便干结、腹胀不适者。尤其适合久坐办公室、饮食精细少纤维、饮水不足的上班族和产后便秘人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>开袋即饮，一次1袋，每日1次。建议早晨空腹或睡前饮用。首次使用建议从半袋开始，根据排便情况调整用量。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>通便期间建议多喝水（每日1500mL以上）、增加蔬菜摄入、适当运动。不建议长期依赖，排便恢复正常后可减量或隔日使用。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。急腹症、肠梗阻患者禁用。腹泻期间暂停使用。本品为植物饮料，不可替代药品。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A9116_1.jpg" alt="金荟猕猴桃饮">
+    </div>
+  </div>
+</section>
+
+<!-- 十四物地黄饮 — 产品封面 -->
+<section class="slide slide-chrome prod-hero">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="prod-num">09</div>
+  <div class="cat-accent plum"></div>
+  <div class="main-content">
+    <div class="hero-img-wrap reveal">
+      <img src="images/6H1A9208_1.jpg" alt="十四物地黄饮">
+    </div>
+    <div class="hero-info">
+      <p class="hero-series reveal">直饮系列 · 补肾滋阴</p>
+      <h2 class="reveal">十四物地黄饮</h2>
+      <p class="hero-tagline reveal" style="color:var(--drink);">十四味滋补，由内而外的年轻态</p>
+      <p class="hero-desc reveal">精选十四味道地药食同源本草，以熟地黄、枸杞为核心，融合铁皮石斛、蛹虫草、党参、黄芪等，专攻肾阴亏虚所致腰膝酸软、精力不济、须发早白。独立便携包装，开袋即饮。</p>
+      <div class="reveal" style="display:flex;gap:clamp(12px,2vw,20px);margin-top:clamp(14px,2vh,24px);flex-wrap:wrap;">
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">14</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">味道地本草</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">0</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">添加蔗糖</div>
+          </div>
+          <div style="flex:1;min-width:100px;text-align:center;padding:clamp(8px,1vh,12px);background:rgba(255,255,255,0.5);border-radius:6px;border:1px solid rgba(201,169,110,0.15);">
+            <div style="font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.8rem);font-weight:900;color:var(--drink);">即开</div>
+            <div style="font-size:var(--small-size);color:var(--text-light);">即饮</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 十四物地黄饮 — 功能主治 -->
+<section class="slide slide-chrome prod-func">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="func-left">
+      <p class="section-label reveal">功 能 主 治</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">肾阴亏虚的信号</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);margin-top:clamp(6px,1vh,10px);">中医认为“肾为先天之本”，主藏精、主骨生髓。肾阴为一身阴液之根本。熬夜、劳累、年岁增长，皆可暗耗肾阴。肾阴亏则腰膝酸软、须发早白、五心烦热。十四物地黄饮以<strong style="color:var(--drink);">滋阴补肾、填精益髓</strong>为核心，十四味本草从根源调理：</p>
+      <div class="symptom-list">
+        <div class="symptom-item reveal">
+          <div class="s-num">1</div>
+          <div class="s-body"><h4>腰膝酸软</h4><p>久坐久站腰酸背痛、双腿无力、上下楼吃力</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">2</div>
+          <div class="s-body"><h4>须发早白</h4><p>不到年纪就白头发增多，头发干枯易脱</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">3</div>
+          <div class="s-body"><h4>精力不济</h4><p>容易疲劳、精神不振、干什么都提不起劲</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">4</div>
+          <div class="s-body"><h4>失眠健忘</h4><p>入睡困难、记忆力明显下降、注意力不集中</p></div>
+        </div>
+        <div class="symptom-item reveal">
+          <div class="s-num">5</div>
+          <div class="s-body"><h4>五心烦热</h4><p>手心脚心发热、夜间盗汗、口干咽燥</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="func-right reveal">
+      <img src="images/ScreenShot_2026-05-25_171857_100.png" alt="十四物地黄饮">
+    </div>
+  </div>
+</section>
+
+<!-- 十四物地黄饮 — 原料配伍 -->
+<section class="slide slide-chrome prod-ingr many-herbs">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="ingr-left reveal">
+      <img src="images/6H1A9362.jpg" alt="十四物地黄饮">
+    </div>
+    <div class="ingr-right">
+      <p class="section-label reveal">原 料 配 伍</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">14味本草 · 成分功效</h2>
+
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">熟地黄</span>
+        <span class="herb-effect">性微温，味甘，归肝肾经。滋阴补血、益精填髓，为补肾阴核心之品。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">红枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，与熟地黄协同增效。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">山茱萸</span>
+        <span class="herb-effect">性微温，味酸涩，归肝肾经。补益肝肾、收涩固脱，补中有涩不流失。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">铁皮石斛</span>
+        <span class="herb-effect">性微寒，味甘，归胃肾经。益胃生津、滋阴清热，养阴而不敛邪。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">桑椹</span>
+        <span class="herb-effect">性寒，味甘酸，归心肝肾经。滋阴补血、生津润燥。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黑果枸杞</span>
+        <span class="herb-effect">性平，味甘，归肝肾经。滋补肝肾、益精明目，富含花青素。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">黄芪</span>
+        <span class="herb-effect">性温，味甘，归脾肺经。补气升阳，气能生精，补气以助滋阴。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">党参</span>
+        <span class="herb-effect">性平，味甘，归脾肺经。补中益气、健脾益肺，助后天以养先天。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">杜仲叶</span>
+        <span class="herb-effect">性温，味甘，归肝肾经。补肝肾、强筋骨，专攻腰膝酸软。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">山药</span>
+        <span class="herb-effect">性平，味甘，归脾肺肾经。补脾养胃、益肾固精，脾肾双补。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">茯苓</span>
+        <span class="herb-effect">性平，味甘淡，归心脾肾经。健脾宁心、利水渗湿，防补药滋腻。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">覆盆子</span>
+        <span class="herb-effect">性温，味甘酸，归肝肾经。益肾固精、缩尿明目，补而能涩。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">牛蒡根</span>
+        <span class="herb-effect">性寒，味苦，归肺胃经。清热解毒、疏风利咽，制衡温药之性。</span>
+      </div>
+      <div class="herb-card  reveal">
+        
+        <span class="herb-name">蛹虫草</span>
+        <span class="herb-effect">性平，味甘，归肺肾经。补肺益肾，肺肾同调，金水相生。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 十四物地黄饮 — 作用机理 -->
+<section class="slide slide-chrome prod-mech">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="section-label reveal">作 用 机 理</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">滋阴 → 填精 → 补气，十四味本草养出年轻态</h2>
+    <div class="mech-flow">
+      <div class="mech-step reveal">
+        <div class="m-icon">💧</div>
+        <h4>第一步：滋阴补肾</h4>
+        <p>熟地黄、铁皮石斛、桑椹协同，大补肾阴。阴液充足则虚火自降，五心烦热得解。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">🧬</div>
+        <h4>第二步：填精益髓</h4>
+        <p>山茱萸、枸杞、黑果枸杞、覆盆子补肝肾、益精血。精足则髓满，腰膝强健、须发乌润。</p>
+      </div>
+      <span class="mech-arrow reveal">→</span>
+      <div class="mech-step reveal">
+        <div class="m-icon">⚡</div>
+        <h4>第三步：补气固本</h4>
+        <p>黄芪、党参、山药、茯苓健脾补气，后天养先天。气足则精能化、血能生，阴阳平衡。</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);margin-top:clamp(12px,2vh,22px);max-width:42em;line-height:1.7;">十四味本草，遵循“<strong style="color:var(--drink);">滋阴不寒凉，补而不滋腻</strong>”的原则。熟地黄、枸杞滋阴为核心；山茱萸、石斛、桑椹、黑枸杞助益肝肾；黄芪、党参等健脾补气；蛹虫草肺肾同调。集补肾名方六味地黄丸之意而更全面。</p>
+  </div>
+</section>
+
+<!-- 十四物地黄饮 — 用法与禁忌 -->
+<section class="slide slide-chrome prod-usage">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel plum">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <div class="usage-left">
+      <p class="section-label reveal">用 法 与 禁 忌</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--h2-size);font-weight:900;color:var(--text-dark);">对症使用，效果更好</h2>
+      <div class="usage-block reveal">
+        <h4>适用人群</h4>
+        <p>肾阴亏虚、腰膝酸软、须发早白、精力不济、失眠健忘、五心烦热者。尤其适合长期熬夜、用脑过度、年过四十精力下降的人群。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>用法用量</h4>
+        <p>开袋即饮，一次1袋，每日1次。建议早晨或上午饮用。冷藏后口感更佳，也可常温饮用。</p>
+      </div>
+      <div class="usage-block reveal">
+        <h4>搭配建议</h4>
+        <p>补肾期间建议配合规律作息、节制房事。可与黑芝麻、核桃、山药粥等食疗搭配。长期坚持效果更佳，建议连续饮用2-4周为一个调理周期。</p>
+      </div>
+      <div class="contraindicate reveal">
+        <h4>禁忌与注意</h4>
+        <p>婴幼儿、孕妇及哺乳期妇女不宜食用。感冒发热期间暂停饮用。脾胃虚寒、大便溏泄者慎用。本品为植物饮料，不可替代药品。</p>
+      </div>
+    </div>
+    <div class="usage-right reveal">
+      <img src="images/6H1A9208_1.jpg" alt="十四物地黄饮">
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="slide slide-chrome divider-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content">
+    <p class="reveal" style="font-size:var(--small-size);letter-spacing:0.4em;color:var(--gold);">药 食 同 源</p>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--title-size);font-weight:900;color:var(--text-dark);line-height:1.3;">科学关联<br><span style="color:var(--red-bright);">合理推荐</span></h2>
+    <p class="reveal" style="font-size:var(--body-size);color:var(--text-light);max-width:28em;line-height:1.8;">九款药食同源产品，辨证搭配，一味一境<br>为每一位顾客找到适合的养生方案</p>
+    <div class="reveal" style="margin-top:clamp(12px,2vh,20px);display:flex;gap:clamp(16px,3vw,32px);flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:900;color:var(--red-bright);">9</div><div style="font-size:var(--small-size);color:var(--text-light);">款产品</div></div>
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:900;color:var(--red-bright);">3</div><div style="font-size:var(--small-size);color:var(--text-light);">大品类</div></div>
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:900;color:var(--red-bright);">百年</div><div style="font-size:var(--small-size);color:var(--text-light);">药企传承</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THANKS -->
+<section class="slide slide-chrome divider-slide">
+  <div class="fixed-logo">
+    <img src="images/logo-gold_1.png" alt="参鸽堂">
+  </div>
+  <div class="left-panel red">
+    <span class="vertical-text">参鸽堂</span>
+  </div>
+  <div class="gold-stripe"></div>
+  <div class="main-content" style="flex-direction:row;gap:clamp(2rem,5vw,5rem);align-items:center;">
+    <div style="flex:1;display:flex;flex-direction:column;gap:clamp(12px,2vh,20px);">
+      <p class="reveal" style="font-size:var(--small-size);letter-spacing:0.4em;color:var(--gold);">感 谢 观 看</p>
+      <h2 class="reveal" style="font-family:var(--font-display);font-size:var(--title-size);font-weight:900;color:var(--text-dark);line-height:1.3;">谢谢观看</h2>
+      <p class="reveal" style="font-size:var(--body-size);color:var(--text-mid);line-height:1.8;">扫码添加企业微信<br>了解更多产品信息与养生方案</p>
+    </div>
+    <div class="reveal" style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.5vh,14px);">
+      <img src="images/企业微信.png" alt="企业微信二维码" style="width:clamp(140px,18vw,200px);height:auto;border-radius:8px;border:2px solid rgba(201,169,110,0.3);padding:8px;background:rgba(255,255,255,0.6);">
+      <p style="font-size:var(--small-size);color:var(--text-light);text-align:center;">扫一扫 添加企业微信</p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+class SlidePresentation {
+  constructor() {
+    this.slides = document.querySelectorAll('.slide');
+    this.progressBar = document.getElementById('progressBar');
+    this.navDots = document.getElementById('navDots');
+    this.buildNavDots();
+    this.setupIntersectionObserver();
+    this.setupKeyboardNav();
+    this.setupScrollListener();
+  }
+  buildNavDots() {
+    this.navDots.innerHTML = '';
+    this.slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      dot.addEventListener('click', () => this.goToSlide(i));
+      this.navDots.appendChild(dot);
+    });
+  }
+  setupIntersectionObserver() {
+    const opts = { root: null, threshold: 0.5 };
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          const idx = Array.from(this.slides).indexOf(entry.target);
+          this.updateActiveDot(idx);
+        }
+      });
+    }, opts);
+    this.slides.forEach(s => this.observer.observe(s));
+  }
+  setupScrollListener() {
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      this.progressBar.style.width = (pct * 100) + '%';
+    }, { passive: true });
+  }
+  updateActiveDot(idx) {
+    Array.from(this.navDots.children).forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+  goToSlide(idx) { this.slides[idx].scrollIntoView({ behavior: 'smooth' }); }
+  setupKeyboardNav() {
+    document.addEventListener('keydown', (e) => {
+      const current = Math.round(window.scrollY / window.innerHeight);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault(); this.goToSlide(Math.min(current + 1, this.slides.length - 1));
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault(); this.goToSlide(Math.max(current - 1, 0));
+      }
+    });
+  }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>
