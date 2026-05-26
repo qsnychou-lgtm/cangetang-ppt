@@ -315,21 +315,23 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
   .brand-slide .brand-info { gap: clamp(6px, 1.5vh, 12px); }
 
   /* Hero */
-  .prod-hero .main-content { flex-direction: column; justify-content: center; gap: clamp(0.6rem, 1.5vh, 1.2rem); }
-  .prod-hero .hero-img-wrap { flex: 0 0 auto; max-height: min(35vh, 240px); }
+  .prod-hero .main-content { flex-direction: column; justify-content: flex-start; gap: clamp(0.5rem, 1.2vh, 1rem); }
+  .prod-hero .hero-img-wrap { flex: 0 0 auto; max-height: min(30vh, 200px); }
   .prod-hero .hero-info { text-align: center; }
-  .prod-hero .hero-desc { max-width: 100%; }
-  .prod-hero .prod-num { font-size: clamp(2rem, 10vw, 4rem); top: clamp(50px, 8vh, 80px); right: clamp(6px, 1.5vw, 14px); }
+  .prod-hero .hero-desc { max-width: 100%; margin-top: clamp(6px, 1vh, 12px); }
+  .prod-hero .hero-price { margin-top: clamp(4px, 0.8vh, 8px); }
+  .prod-hero .hero-stats { margin-top: clamp(4px, 0.8vh, 8px); }
+  .prod-hero .prod-num { font-size: clamp(2rem, 10vw, 4rem); top: clamp(50px, 8vh, 80px); right: clamp(6px, 1.5vw, 14px); z-index: 0; }
   .prod-hero .cat-accent { top: clamp(50px, 8vh, 80px); left: calc(clamp(28px, 6vw, 40px) + clamp(3px, 0.5vw, 5px) + clamp(8px, 1.5vw, 16px)); width: clamp(20px, 5vw, 40px); }
 
   /* Function */
   .prod-func .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-func .func-right { flex: 0 0 auto; max-height: min(28vh, 200px); order: -1; }
+  .prod-func .func-right { flex: 0 0 auto; max-height: min(25vh, 170px); order: -1; }
   .prod-func .symptom-item { padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 12px); }
 
   /* Ingredients */
   .prod-ingr .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-ingr .ingr-left { flex: 0 0 auto; max-height: min(28vh, 200px); }
+  .prod-ingr .ingr-left { flex: 0 0 auto; max-height: min(25vh, 170px); }
   .prod-ingr .herb-card { padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 12px); }
 
   /* Mechanism */
@@ -340,7 +342,7 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
 
   /* Usage */
   .prod-usage .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-usage .usage-right { flex: 0 0 auto; max-height: min(28vh, 200px); }
+  .prod-usage .usage-right { flex: 0 0 auto; max-height: min(25vh, 170px); }
   .prod-usage .usage-block, .prod-usage .contraindicate { padding: clamp(8px, 1.2vh, 12px) clamp(10px, 2vw, 14px); }
 
   /* Divider */
