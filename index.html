@@ -295,7 +295,7 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
 
 /* === Phone === */
 @media (max-width: 640px) {
-  .slide { height: auto; min-height: 100dvh; }
+  .slide { height: auto; min-height: 100dvh; overflow-x: hidden; overflow-y: visible; scroll-snap-align: none; }
   .slide-chrome .left-panel { width: clamp(28px, 6vw, 40px); }
   .slide-chrome .vertical-text { writing-mode: horizontal-tb; letter-spacing: 0.2em; }
   .slide-chrome .left-panel { display: flex; align-items: center; justify-content: center; padding-bottom: 0; }
@@ -315,8 +315,9 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
   .brand-slide .brand-info { gap: clamp(6px, 1.5vh, 12px); }
 
   /* Hero */
-  .prod-hero .main-content { flex-direction: column; justify-content: flex-start; gap: clamp(0.5rem, 1.2vh, 1rem); }
-  .prod-hero .hero-img-wrap { flex: 0 0 auto; max-height: min(30vh, 200px); }
+  .prod-hero .main-content { flex-direction: column; justify-content: flex-start; gap: clamp(0.5rem, 1.2vh, 1rem); padding-top: clamp(60px, 10vh, 80px); }
+  .prod-hero .hero-img-wrap { flex: 0 0 auto; width: 100%; max-height: min(28vh, 190px); }
+  .prod-hero .hero-img-wrap img { max-height: min(28vh, 190px); width: auto; max-width: 100%; }
   .prod-hero .hero-info { text-align: center; }
   .prod-hero .hero-desc { max-width: 100%; margin-top: clamp(6px, 1vh, 12px); }
   .prod-hero .hero-price { margin-top: clamp(4px, 0.8vh, 8px); }
@@ -326,12 +327,14 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
 
   /* Function */
   .prod-func .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-func .func-right { flex: 0 0 auto; max-height: min(25vh, 170px); order: -1; }
+  .prod-func .func-right { flex: 0 0 auto; max-height: min(24vh, 160px); order: -1; }
+  .prod-func .func-right img { max-height: min(24vh, 160px); }
   .prod-func .symptom-item { padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 12px); }
 
   /* Ingredients */
   .prod-ingr .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-ingr .ingr-left { flex: 0 0 auto; max-height: min(25vh, 170px); }
+  .prod-ingr .ingr-left { flex: 0 0 auto; max-height: min(24vh, 160px); }
+  .prod-ingr .ingr-left img { max-height: min(24vh, 160px); }
   .prod-ingr .herb-card { padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 12px); }
 
   /* Mechanism */
@@ -342,7 +345,8 @@ img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
 
   /* Usage */
   .prod-usage .main-content { flex-direction: column; justify-content: center; gap: clamp(0.8rem, 2vh, 1.5rem); }
-  .prod-usage .usage-right { flex: 0 0 auto; max-height: min(25vh, 170px); }
+  .prod-usage .usage-right { flex: 0 0 auto; max-height: min(24vh, 160px); }
+  .prod-usage .usage-right img { max-height: min(24vh, 160px); }
   .prod-usage .usage-block, .prod-usage .contraindicate { padding: clamp(8px, 1.2vh, 12px) clamp(10px, 2vw, 14px); }
 
   /* Divider */
